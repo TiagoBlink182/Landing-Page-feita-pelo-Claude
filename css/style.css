@@ -727,6 +727,29 @@ section{ position:relative; }
   .wa-float .wa-text{ display:none; }
 }
 
+/* Ajustes para telas pequenas */
+@media (max-width:600px){
+  .hero{ padding-bottom:48px; }
+  .hero .container{ padding-block:36px; gap:32px; }
+  .hero h1{ font-size:clamp(2rem,10vw,2.3rem); }
+  .hero-sub{ font-size:1.04rem; }
+  .hero-ctas{ gap:12px; }
+  .hero-ctas .btn{ width:100%; justify-content:center; }
+  .hero-trust{ gap:12px; }
+  .hero-trust li{ text-align:left; }
+  .hero-logo-frame{ width:min(300px,82vw); }
+
+  .service-card,
+  .coverage-card,
+  .contact-card{ padding:28px 22px; }
+  .faq-item summary{ padding:18px 20px; font-size:.98rem; }
+  .faq-item p{ padding:0 20px 20px; }
+  .contact-card .btn{ width:100%; justify-content:center; }
+  .map-frame,
+  .map-frame iframe{ min-height:260px; }
+  .footer-bottom{ justify-content:center; text-align:center; }
+}
+
 /* Reveal-on-scroll */
 .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
 .reveal.is-visible{ opacity:1; transform:translateY(0); }
