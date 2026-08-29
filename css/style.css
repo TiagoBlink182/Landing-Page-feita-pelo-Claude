@@ -298,22 +298,6 @@ section{ position:relative; }
   .hero .container{ grid-template-columns:1fr; min-height:auto; gap:40px; text-align:center; }
 }
 
-.hero-badge-decor{
-  position:absolute; inset:0; z-index:0; pointer-events:none;
-}
-.hero-badge-decor svg{
-  position:absolute; top:50%; right:-6%;
-  width:min(56vw,720px); height:auto;
-  opacity:.5;
-  transform-origin:center center;
-  animation:spin-offset 120s linear infinite;
-}
-@keyframes spin-offset{
-  from{ transform:translateY(-50%) rotate(0deg); }
-  to{ transform:translateY(-50%) rotate(360deg); }
-}
-@keyframes spin-pure{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
-
 .hero-content{ position:relative; z-index:2; }
 .hero .eyebrow{ color:var(--gold-300); }
 .hero .eyebrow::before{ background:var(--gold-400,var(--gold-300)); }
@@ -355,12 +339,6 @@ section{ position:relative; }
   width:min(360px,72vw);
   aspect-ratio:1;
   display:flex; align-items:center; justify-content:center;
-}
-.hero-logo-frame .ring-decor{
-  position:absolute; inset:-14%;
-  transform-origin:50% 50%;
-  animation:spin-pure 90s linear infinite reverse;
-  will-change:transform;
 }
 .hero-logo-frame img{
   width:82%; height:82%;
@@ -414,7 +392,7 @@ section{ position:relative; }
   display:flex; align-items:center; justify-content:center;
 }
 .about-portrait .medal{
-  position:relative; width:min(320px,80%); aspect-ratio:1;
+  position:relative; width:min(480px,94%); aspect-ratio:1;
 }
 .about-portrait .medal svg.scallop-bg{
   position:absolute; inset:0; color:var(--wine-700);
