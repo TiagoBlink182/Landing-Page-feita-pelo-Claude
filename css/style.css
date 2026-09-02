@@ -188,6 +188,20 @@ section{ position:relative; }
 
 .btn-sm{ padding:11px 20px; font-size:.92rem; }
 
+.wine-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:.28em;
+  white-space:nowrap;
+}
+.wine-tag img{
+  width:2.25em;
+  height:2.25em;
+  object-fit:contain;
+  display:block;
+  vertical-align:middle;
+}
+
 /* =========================================================
    HEADER / NAV
    ========================================================= */
@@ -211,11 +225,10 @@ section{ position:relative; }
 .nav-brand img{
   width:52px; height:52px;
   aspect-ratio:1/1; object-fit:contain;
-  transition:transform .35s var(--ease), filter .35s var(--ease);
+  filter:drop-shadow(0 8px 14px rgba(122,37,54,0.18));
 }
 .nav-brand:hover img, .nav-brand:focus-visible img{
-  transform:translateY(-3px) rotate(-4deg);
-  filter:drop-shadow(0 10px 16px rgba(122,37,54,0.55));
+  filter:drop-shadow(0 10px 18px rgba(216,161,59,0.72));
 }
 .nav-brand small{
   display:block;
@@ -404,6 +417,14 @@ section{ position:relative; }
   object-fit:contain;
   aspect-ratio:1/1;
   width:80%; height:80%; margin:auto;
+  box-shadow:none;
+  filter:none;
+  transition:box-shadow .25s ease, filter .25s ease, transform .25s ease;
+}
+.about-portrait .medal img:hover,
+.about-portrait .medal img:focus-visible{
+  box-shadow:0 18px 38px -18px rgba(122,37,54,0.9);
+  filter:drop-shadow(0 14px 22px rgba(122,37,54,0.45));
 }
 .about-copy h2{ font-size:clamp(1.8rem,3vw,2.5rem); }
 .about-copy > p{ font-size:1.08rem; line-height:1.7; color:var(--ink-700); max-width:60ch; }
@@ -419,9 +440,13 @@ section{ position:relative; }
   border-radius:var(--radius-md);
   padding:20px 16px;
   text-align:center;
-  transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
 }
-.stat-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-card); }
+.stat-card:hover{
+  transform:translateX(6px);
+  box-shadow:var(--shadow-card);
+  border-color:rgba(122,37,54,.25);
+}
 .stat-num{
   font-family:var(--font-display); font-weight:700;
   font-size:1.7rem; color:var(--wine-700);
@@ -456,6 +481,47 @@ section{ position:relative; }
 }
 
 /* =========================================================
+   PROOF / TRUST BAND
+   ========================================================= */
+.proof-band{
+  background:linear-gradient(180deg, var(--cream-100), var(--cream-200));
+  padding-top:0;
+}
+.proof-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:22px;
+}
+@media (max-width:760px){ .proof-grid{ grid-template-columns:1fr; } }
+.proof-item{
+  background:var(--cream-100);
+  border:1px solid rgba(122,37,54,.12);
+  border-radius:var(--radius-lg);
+  padding:24px 20px;
+  box-shadow:0 10px 26px -18px rgba(30,14,18,0.35);
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+}
+.proof-item:hover{
+  transform:translateX(6px);
+  box-shadow:var(--shadow-card);
+  border-color:rgba(122,37,54,.25);
+}
+.proof-kicker{
+  display:block;
+  margin-bottom:10px;
+  color:var(--gold-700);
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+.proof-item strong{
+  font-size:1.02rem;
+  line-height:1.5;
+  color:var(--ink-900);
+}
+
+/* =========================================================
    SERVICE / CONSULTORIA
    ========================================================= */
 .service{ background:var(--cream-200); }
@@ -463,6 +529,12 @@ section{ position:relative; }
   display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:start;
 }
 @media (max-width:900px){ .service-grid{ grid-template-columns:1fr; } }
+.service-lead{
+  max-width:58ch;
+  color:var(--ink-700);
+  font-size:1.05rem;
+  line-height:1.7;
+}
 
 .service-list{ margin-top:28px; display:grid; gap:16px; }
 .service-item{
@@ -516,6 +588,31 @@ section{ position:relative; }
 }
 .insta-handle:active{ transform:translateY(-1px); }
 .insta-handle svg{ width:18px; height:18px; flex-shrink:0; }
+
+/* =========================================================
+   CTA BANNER
+   ========================================================= */
+.cta-banner{
+  background:var(--wine-900);
+  color:var(--cream-200);
+}
+.cta-banner-inner{
+  background:linear-gradient(135deg, rgba(122,37,54,.96), rgba(60,18,32,.96));
+  border:1px solid rgba(216,161,59,.24);
+  border-radius:var(--radius-lg);
+  padding:32px 28px;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  box-shadow:var(--shadow-wine);
+}
+.cta-banner-inner h2{
+  color:var(--cream-100);
+  margin:0;
+  font-size:clamp(1.5rem, 2.4vw, 2.2rem);
+}
+@media (max-width:860px){
+  .cta-banner-inner{ flex-direction:column; align-items:flex-start; }
+  .cta-banner-inner .btn{ width:100%; justify-content:center; }
+}
 
 /* =========================================================
    HOW IT WORKS (steps)
@@ -588,6 +685,12 @@ section{ position:relative; }
   border:1px solid rgba(122,37,54,.12);
   border-radius:var(--radius-md);
   overflow:hidden;
+  transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+}
+.faq-item:hover{
+  transform:translateX(6px);
+  box-shadow:var(--shadow-card);
+  border-color:rgba(122,37,54,.25);
 }
 .faq-item summary{
   cursor:pointer; list-style:none;
@@ -653,8 +756,8 @@ section{ position:relative; }
 @media (max-width:760px){ .footer-grid{ grid-template-columns:1fr; gap:32px; text-align:center; } }
 .footer-brand{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
 @media (max-width:760px){ .footer-brand{ justify-content:center; } }
-.footer-brand img{ width:56px; height:56px; aspect-ratio:1/1; object-fit:contain; transition:transform .3s var(--ease), filter .3s var(--ease); }
-.footer-brand:hover img{ transform:translateY(-3px) rotate(-4deg); filter:drop-shadow(0 10px 16px rgba(122,37,54,.6)); }
+.footer-brand img{ width:56px; height:56px; aspect-ratio:1/1; object-fit:contain; filter:drop-shadow(0 8px 14px rgba(122,37,54,0.18)); }
+.footer-brand:hover img, .footer-brand:focus-visible img{ filter:drop-shadow(0 10px 18px rgba(216,161,59,0.72)); }
 .footer-brand span{ font-family:var(--font-display); font-weight:600; color:var(--cream-100); font-size:1.15rem; }
 .site-footer h5{
   color:var(--gold-300); font-size:.8rem; letter-spacing:.1em; text-transform:uppercase;
@@ -682,6 +785,16 @@ section{ position:relative; }
   border-top:1px solid rgba(245,233,206,.12);
   display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
   font-size:.85rem;
+}
+.footer-portfolio-link{
+  color:#5aa9ff;
+  text-decoration:none;
+  transition:color .25s ease, text-shadow .25s ease;
+}
+.footer-portfolio-link:hover,
+.footer-portfolio-link:focus-visible{
+  color:#8ec5ff;
+  text-shadow:0 0 10px rgba(90,169,255,0.5);
 }
 
 /* =========================================================
@@ -748,6 +861,41 @@ section{ position:relative; }
   .map-frame,
   .map-frame iframe{ min-height:260px; }
   .footer-bottom{ justify-content:center; text-align:center; }
+}
+
+@media (max-width:420px){
+  .container{ padding-inline:16px; }
+  .section-pad{ padding:52px 0; }
+
+  .hero{ padding-top:52px; padding-bottom:40px; }
+  .hero .container{ padding-block:24px; gap:24px; }
+  .hero h1{ font-size:clamp(1.8rem,9vw,2.1rem); }
+  .hero-sub{ font-size:.98rem; }
+  .hero-ctas{ gap:10px; }
+  .btn{ padding:13px 18px; font-size:.95rem; }
+
+  .stat-grid{ gap:12px; }
+  .stat-card{ padding:16px 12px; }
+  .stat-num{ font-size:1.45rem; }
+
+  .proof-item,
+  .service-item,
+  .faq-item summary,
+  .cta-banner-inner{ padding-left:18px; padding-right:18px; }
+
+  .cta-banner-inner{ padding-top:22px; padding-bottom:22px; }
+
+  .coverage-card,
+  .service-card,
+  .contact-card{ padding:24px 18px; }
+  .faq-item summary{ font-size:.94rem; }
+  .faq-item p{ padding:0 18px 18px; font-size:.96rem; }
+  .contact-card .btn{ width:100%; justify-content:center; }
+
+  .map-frame,
+  .map-frame iframe{ min-height:230px; }
+  .footer-bottom{ font-size:.78rem; }
+  .wa-float{ right:10px; bottom:10px; }
 }
 
 /* Reveal-on-scroll */
