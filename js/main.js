@@ -10,17 +10,29 @@
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
   if (toggle && links) {
-    toggle.addEventListener("click", function () {
-      var isOpen = links.classList.toggle("is-open");
+    function setMenuState(isOpen) {
+      links.classList.toggle("is-open", isOpen);
       toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
       toggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+      document.body.classList.toggle("menu-open", isOpen);
+      links.inert = window.matchMedia("(max-width: 900px)").matches && !isOpen;
+    }
+
+    toggle.addEventListener("click", function () {
+      setMenuState(!links.classList.contains("is-open"));
     });
     links.querySelectorAll("a").forEach(function (a) {
       a.addEventListener("click", function () {
-        links.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
+        setMenuState(false);
       });
     });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && links.classList.contains("is-open")) {
+        setMenuState(false);
+        toggle.focus();
+      }
+    });
+    setMenuState(false);
   }
 
   // Reveal on scroll

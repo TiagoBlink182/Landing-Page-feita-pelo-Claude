@@ -42,6 +42,7 @@
 @media (prefers-color-scheme: dark){ :root{ color-scheme: dark light; } }
 
 *,*::before,*::after{ box-sizing:border-box; }
+html{ overflow-x:clip; }
 html{ scroll-behavior:smooth; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior:auto; }
@@ -56,6 +57,7 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
+body.menu-open{ overflow:hidden; }
 
 h1,h2,h3,h4{
   font-family:var(--font-display);
@@ -98,6 +100,8 @@ button{ font-family:inherit; }
 }
 
 section{ position:relative; }
+.section-pad[id],
+section[id]{ scroll-margin-top:88px; }
 .section-pad{ padding:96px 0; }
 @media (max-width:780px){ .section-pad{ padding:64px 0; } }
 
@@ -136,6 +140,7 @@ section{ position:relative; }
   cursor:pointer;
   transition:transform .28s var(--ease), box-shadow .28s var(--ease), background-color .2s ease;
   white-space:nowrap;
+  touch-action:manipulation;
 }
 .btn svg{ width:20px; height:20px; flex-shrink:0; }
 
@@ -276,6 +281,7 @@ section{ position:relative; }
   background:none; border:none; cursor:pointer;
   width:44px; height:44px;
   align-items:center; justify-content:center;
+  touch-action:manipulation;
 }
 .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
   content:""; display:block; width:24px; height:2px;
@@ -287,7 +293,7 @@ section{ position:relative; }
 
 @media (max-width:900px){
   .nav-links{
-    position:fixed; inset:0 0 0 auto; height:100vh; width:min(320px,80vw);
+    position:fixed; inset:0 0 0 auto; height:100dvh; width:min(320px,80vw);
     background:var(--cream-100);
     flex-direction:column; align-items:flex-start;
     padding:100px 28px 40px;
